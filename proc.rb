@@ -1,7 +1,7 @@
 require 'yajl'
 
 md5_dbfile = "count.csv"
-result_file = "md5_txt"
+result_file = "md5.txt"
 out_file = "structure.json"
 
 md5_db = {}
@@ -27,6 +27,8 @@ structure = {
 open(result_file) { |file|
   while l = file.gets
     md5, path = l.strip.split("\t")
+
+    next if path.nil?
     size = FileTest.size?(path) || 0
 
     # limit files to visualize
